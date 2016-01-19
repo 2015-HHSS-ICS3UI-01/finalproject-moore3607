@@ -41,6 +41,8 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     
     
     
+    
+    
     // block
     
     ArrayList<Rectangle> blocks = new ArrayList<>();
@@ -49,9 +51,9 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     //player
     Rectangle player = new Rectangle(600,600,50,50);
     //ghostie wosties
-    Rectangle blinky = new Rectangle(610, 210, 50, 50);
-    Rectangle pinky = new Rectangle(550, 210, 50, 50);
-    Rectangle inky = new Rectangle(670,210,50,50);
+    Rectangle blinky = new Rectangle(610, 200, 50, 50);
+    Rectangle pinky = new Rectangle(550, 200, 50, 50);
+    Rectangle inky = new Rectangle(670,200,50,50);
     int moveX = 0;
     int moveY = 0;
     int blinkyX = 0;
@@ -116,6 +118,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     public void run()
     {
         
+        
         //blocks
         //PERIMETER
         //main floor left
@@ -169,9 +172,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //ghost chamber right wall
         blocks.add(new Rectangle(770,250,50,200));
         //ghost chamber left roof
-        blocks.add(new Rectangle(490,250,100,20));
-        //ghost chamber right roof
-        blocks.add(new Rectangle(690,250,100,20));
+        blocks.add(new Rectangle(490,250,300,20));
         //left long horizontal line below ghost chamber
         blocks.add(new Rectangle(430,590,440,20));
         
@@ -262,14 +263,16 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         boolean done = false; 
         while(!done)
         {
+            
+            int rand = (int)(Math.random()*4);
+            
             // determines when we started so we can keep a framerate
             startTime = System.currentTimeMillis();
             
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
             
-            x = mouseX;
-            y = mouseY;
+           
             //moving the player
             if(left){
                 right = false;
@@ -296,7 +299,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 moveX = 0;
                 moveY = 2;
             }
-            int randnum = (int) (Math.random() * (5 - 1 + 1)) + 1;
+            
             
             if(blinkyX == 0 && blinkyY == 0){
                 blinkyX = 0;
@@ -349,8 +352,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                        if(blinky.x < block.x){
                            //move the player the overlap
                            blinky.x = blinky.x - intersection.width;
+                           blinkyX = 0;
                        }else{
                            blinky.x = blinky.x + intersection.width;
+                           blinkyX = 0;
                        }
                    }else{ //fix the y
                        //hit the block with my head
@@ -376,8 +381,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                        if(pinky.x < block.x){
                            //move the player the overlap
                            pinky.x = pinky.x - intersection.width;
+                           pinkyX = 0;
                        }else{
                            pinky.x = pinky.x + intersection.width;
+                           pinkyX = 0;
                        }
                    }else{ //fix the y
                        //hit the block with my head
@@ -403,8 +410,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                        if(inky.x < block.x){
                            //move the player the overlap
                            inky.x = inky.x - intersection.width;
+                           inkyX = 0;
                        }else{
                            inky.x = inky.x + intersection.width;
+                           inkyX = 0;
                        }
                    }else{ //fix the y
                        //hit the block with my head
@@ -427,6 +436,69 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                    break;
                }
             }
+            
+            //moving the ghostie wosties
+            if(blinkyX == 0 && blinkyY == 0){
+                if(rand == 0){
+                    blinkyX = -2;
+                    blinkyY = 0;
+                }else if(rand == 1){
+                    blinkyX = 2;
+                    blinkyY = 0;
+                }else if(rand == 2){
+                    blinkyX = 0;
+                    blinkyY = -2;
+                }else if(rand == 3){
+                    blinkyX = 0;
+                    blinkyY = 2;
+                }
+            }
+            
+            if(pinkyX == 0 && pinkyY == 0){
+                if(rand == 0){
+                    pinkyX = -2;
+                    pinkyY = 0;
+                }else if(rand == 1){
+                    pinkyX = 2;
+                    pinkyY = 0;
+                }else if(rand == 2){
+                    pinkyX = 0;
+                    pinkyY = -2;
+                }else if(rand == 3){
+                    pinkyX = 0;
+                    pinkyY = 2;
+                }
+            }
+            
+            if(inkyX == 0 && inkyY == 0){
+                if(rand == 0){
+                    inkyX = -2;
+                    inkyY = 0;
+                }else if(rand == 1){
+                    inkyX = 2;
+                    inkyY = 0;
+                }else if(rand == 2){
+                    inkyX = 0;
+                    inkyY = -2;
+                }else if(rand == 3){
+                    inkyX = 0;
+                    inkyY = 2;
+                }
+            }
+            
+            //creating death touch for ghostie wosties
+            if(player.intersects(blinky)){
+                player.x = 600;
+                player.y = 600;
+            }else if(player.intersects(pinky)){
+                player.x = 600;
+                player.y = 600;
+            }else if(player.intersects(inky)){
+                player.x = 600;
+                player.y = 600;
+            }
+            
+            
             
 
             // GAME LOGIC ENDS HERE 
