@@ -134,17 +134,19 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //middle left floor
         blocks.add(new Rectangle(0,450,180,20));
         //middle left wall
-        blocks.add(new Rectangle(0,270,20,200));
+        blocks.add(new Rectangle(0,320,20,130));
         //middle left roof
-        blocks.add(new Rectangle(0,270,195,60));
+        blocks.add(new Rectangle(0,310,320,20));
         //transition from middle to top
-        blocks.add(new Rectangle(180,220,15,50));
+        blocks.add(new Rectangle(320,220,20,110));
         //top left floor
-        blocks.add(new Rectangle(0,220,180,20));
+        blocks.add(new Rectangle(0,220,340,20));
         //top left wall
-        blocks.add(new Rectangle(0,70,20,150));
-        //main roof
-        blocks.add(new Rectangle(0,70,1200,20));
+        blocks.add(new Rectangle(0,80,20,140));
+        //main roof left
+        blocks.add(new Rectangle(0,80,630,20));
+        //main roof right
+        blocks.add(new Rectangle(630,70,630,20));
         //top right wall
         blocks.add(new Rectangle(1180,70,20,170));
         //top right floor
@@ -164,38 +166,44 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //bottom right wall
         blocks.add(new Rectangle(1180,520,20,200));
         
-        //GHOST CHAMBER
-        //ghost chamber floor
-        blocks.add(new Rectangle(490,350,300,20));
-        //ghost chamber left wall
-        blocks.add(new Rectangle(490,220,20,230));
-        //ghost chamber right wall
-        blocks.add(new Rectangle(770,250,50,200));
-        //ghost chamber left roof
-        blocks.add(new Rectangle(490,250,300,20));
-        //left long horizontal line below ghost chamber
-        blocks.add(new Rectangle(430,590,440,20));
+        //CENTER
+        //left long horizontal line below center
+        blocks.add(new Rectangle(410,590,200,20));
+        //corner (vertical) at bottom leading into center area
+        blocks.add(new Rectangle(660,520,20,140));
+        //line (horizontal) leading left from the corner
+        blocks.add(new Rectangle(460,520,200,20));
+        //line leading back to top from ^
+        blocks.add(new Rectangle(460,220,20,300));
+        //line leading right from ^
+        blocks.add(new Rectangle(460,220,100,20));
+        //line leading down from ^
+        blocks.add(new Rectangle(560,220,20,50));
+        //long line leading right from ^
+        blocks.add(new Rectangle(560,250,260,20));
+        //(top) line leading down from ^
+        blocks.add(new Rectangle(800,250,20,50));
+        
+        //top part of inner center 
+        //(bottom) line leading down from ^^
+        blocks.add(new Rectangle(800,350,20,260));
+        //line leading left from top part of ^
+        blocks.add(new Rectangle(730,350,90,20));
+        //line leading up from ^
+        blocks.add(new Rectangle(730,320,20,30));
+        //line leading right from ^
+        blocks.add(new Rectangle(500,320,230,20));
+        
+        //bottom part of inner center
         
         
         //TOP AND MIDDLE LEFT
         //top left T horizontal
-        blocks.add(new Rectangle(200,140,375,30));
-        //top left T virtical
-        blocks.add(new Rectangle(320,140,30,190));
-        //vertical line to the right of top left T
-        blocks.add(new Rectangle(400,220,30,390));
-        //horizontal line to the left of top left T
-        blocks.add(new Rectangle(70,140,70,30));
-        //1st horizontal line intersecting left of the vertical line (right of T)
-        blocks.add(new Rectangle(200,380,200,20));
-        //horizontal line in the middle of middle left indent
-        blocks.add(new Rectangle(70,380,70,20));
-        //line in the middle of middle to top transition
-        blocks.add(new Rectangle(255,220,10,110));
+        blocks.add(new Rectangle(70,150,510,20));
+        //top left T verticle
+        blocks.add(new Rectangle(390,160,20,450));
         //line hangling from right side of T horizontal
-        blocks.add(new Rectangle(560,140,15,50));
-        //horizontal line to the right of transition from bottom to middle
-        blocks.add(new Rectangle(260,450,90,20));
+        blocks.add(new Rectangle(560,150,20,20));
         
         //TOP AND MIDDLE RIGHT
         //top middle virtical line
@@ -218,12 +226,16 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(1140,300,20,150));
         
         //BOTTOM LEFT
-        //left line hanging from transition horizontal by bottom left
-        blocks.add(new Rectangle(260,450,20,160));
-        //rright side line from ^
-        blocks.add(new Rectangle(335,530,10,80));
-        //top horizontal line going into bottom left indent
-        blocks.add(new Rectangle(70,590,210,20));
+        //horizontal line on bottom left T
+        blocks.add(new Rectangle(70,380,330,20));
+        //(top) vertical line on bottom left T
+        blocks.add(new Rectangle(250,400,20,50));
+        //(bottom) vertical line on bottom left T 
+        blocks.add(new Rectangle(250,505,20,90));
+        //verticle line coming from main floor (left)
+        blocks.add(new Rectangle(320,450,20,210));
+        //horizontal line going into bottom left indent
+        blocks.add(new Rectangle(70,590,200,20));
         //verticle line going down in bottom left indent
         blocks.add(new Rectangle(70,590,20,80));
         //left verticle line going up from the main floor
@@ -235,23 +247,126 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         
         //BOTTOM RIGHT
         
+        //PELLETS
+        //first top left horizontal line
+        pellets.add(new Rectangle(35, 115, 20, 20));
+        pellets.add(new Rectangle(75, 115, 20, 20));
+        pellets.add(new Rectangle(115, 115, 20, 20));
+        pellets.add(new Rectangle(155, 115, 20, 20));
+        pellets.add(new Rectangle(195, 115, 20, 20));
+        pellets.add(new Rectangle(235, 115, 20, 20));
+        pellets.add(new Rectangle(275, 115, 20, 20));
+        pellets.add(new Rectangle(315, 115, 20, 20));
+        pellets.add(new Rectangle(355, 115, 20, 20));
+        pellets.add(new Rectangle(395, 115, 20, 20));
+        pellets.add(new Rectangle(435, 115, 20, 20));
+        pellets.add(new Rectangle(475, 115, 20, 20));
+        pellets.add(new Rectangle(515, 115, 20, 20));
+        pellets.add(new Rectangle(555, 115, 20, 20));
         
+        //top left verticle line
+        pellets.add(new Rectangle(35, 150, 20, 20));
+        pellets.add(new Rectangle(35, 185, 20, 20));
         
-        pellets.add(new Rectangle(35, 105, 20, 20));
-        pellets.add(new Rectangle(75, 105, 20, 20));
-        pellets.add(new Rectangle(115, 105, 20, 20));
-        pellets.add(new Rectangle(155, 105, 20, 20));
-        pellets.add(new Rectangle(195, 105, 20, 20));
-        pellets.add(new Rectangle(235, 105, 20, 20));
-        pellets.add(new Rectangle(275, 105, 20, 20));
-        pellets.add(new Rectangle(315, 105, 20, 20));
-        pellets.add(new Rectangle(355, 105, 20, 20));
-        pellets.add(new Rectangle(395, 105, 20, 20));
-        pellets.add(new Rectangle(435, 105, 20, 20));
-        pellets.add(new Rectangle(475, 105, 20, 20));
-        pellets.add(new Rectangle(515, 105, 20, 20));
-        pellets.add(new Rectangle(555, 105, 20, 20));
-        pellets.add(new Rectangle(595, 105, 20, 20));
+        //second top left horizontal line
+        pellets.add(new Rectangle(75, 185, 20, 20));
+        pellets.add(new Rectangle(115, 185, 20, 20));
+        pellets.add(new Rectangle(155, 185, 20, 20));
+        pellets.add(new Rectangle(195, 185, 20, 20));
+        pellets.add(new Rectangle(235, 185, 20, 20));
+        pellets.add(new Rectangle(275, 185, 20, 20));
+        pellets.add(new Rectangle(315, 185, 20, 20));
+        pellets.add(new Rectangle(355, 185, 20, 20));
+        
+        //second top left verticle line
+        pellets.add(new Rectangle(355, 225, 20, 20));
+        pellets.add(new Rectangle(355, 265, 20, 20));
+        pellets.add(new Rectangle(355, 305, 20, 20));
+        pellets.add(new Rectangle(355, 345, 20, 20));
+        
+        //first middle left horizontal line
+        pellets.add(new Rectangle(315, 345, 20, 20));
+        pellets.add(new Rectangle(275, 345, 20, 20));
+        pellets.add(new Rectangle(235, 345, 20, 20));
+        pellets.add(new Rectangle(195, 345, 20, 20));
+        pellets.add(new Rectangle(155, 345, 20, 20));
+        pellets.add(new Rectangle(115, 345, 20, 20));
+        pellets.add(new Rectangle(75, 345, 20, 20));
+        pellets.add(new Rectangle(35, 345, 20, 20));
+        
+        //first middle vertical line
+        pellets.add(new Rectangle(35, 380, 20, 20));
+        pellets.add(new Rectangle(35, 415, 20, 20));
+        
+        //second middle left horizontal line (left)
+        pellets.add(new Rectangle(70, 415, 20, 20));
+        pellets.add(new Rectangle(105, 415, 20, 20));
+        pellets.add(new Rectangle(140, 415, 20, 20));
+        pellets.add(new Rectangle(175, 415, 20, 20));
+        pellets.add(new Rectangle(210, 415, 20, 20));
+        
+        //second left middle horizontal line(right)
+        pellets.add(new Rectangle(320, 420, 20, 20));
+        pellets.add(new Rectangle(355, 420, 20, 20));
+        
+        //second middle verticle line
+        pellets.add(new Rectangle(215, 445, 20, 20));
+        pellets.add(new Rectangle(215, 480, 20, 20));
+        pellets.add(new Rectangle(215, 515, 20, 20));
+        pellets.add(new Rectangle(215, 555, 20, 20));
+        
+        //first bottom left horizontal
+        pellets.add(new Rectangle(180, 555, 20, 20));
+        pellets.add(new Rectangle(145, 555, 20, 20));
+        pellets.add(new Rectangle(110, 555, 20, 20));
+        pellets.add(new Rectangle(75, 555, 20, 20));
+        pellets.add(new Rectangle(35, 555, 20, 20));
+        
+        //first bottom left vertical
+        pellets.add(new Rectangle(35, 585, 20, 20));
+        pellets.add(new Rectangle(35, 620, 20, 20));
+        pellets.add(new Rectangle(35, 655, 20, 20));
+        pellets.add(new Rectangle(35, 685, 20, 20));
+        
+        //second bottom left horizontal
+        pellets.add(new Rectangle(70, 685, 20, 20));
+        pellets.add(new Rectangle(105, 685, 20, 20));
+        
+        //second bottom left vertical
+        pellets.add(new Rectangle(105, 655, 20, 20));
+        pellets.add(new Rectangle(105, 625, 20, 20));
+        
+        //third bottom left horizontal
+        pellets.add(new Rectangle(140, 625, 20, 20));
+        pellets.add(new Rectangle(175, 625, 20, 20));
+        pellets.add(new Rectangle(210, 625, 20, 20));
+        pellets.add(new Rectangle(245, 625, 20, 20));
+        pellets.add(new Rectangle(285, 625, 20, 20));
+        
+        //third bottom left vertical
+        pellets.add(new Rectangle(285, 585, 20, 20));
+        pellets.add(new Rectangle(285, 545, 20, 20));
+        pellets.add(new Rectangle(285, 505, 20, 20));
+        pellets.add(new Rectangle(285, 465, 20, 20));
+        pellets.add(new Rectangle(285, 420, 20, 20));
+        
+        //fourth bottom left verticle line
+        pellets.add(new Rectangle(355, 455, 20, 20));
+        pellets.add(new Rectangle(355, 490, 20, 20));
+        pellets.add(new Rectangle(355, 525, 20, 20));
+        pellets.add(new Rectangle(355, 560, 20, 20));
+        pellets.add(new Rectangle(355, 595, 20, 20));
+        pellets.add(new Rectangle(355, 630, 20, 20));
+        
+        //first center horizontal line
+        pellets.add(new Rectangle(395, 630, 20, 20));
+        pellets.add(new Rectangle(430, 630, 20, 20));
+        pellets.add(new Rectangle(465, 630, 20, 20));
+        pellets.add(new Rectangle(495, 630, 20, 20));
+        pellets.add(new Rectangle(525, 630, 20, 20));
+        pellets.add(new Rectangle(560, 630, 20, 20));
+        pellets.add(new Rectangle(595, 630, 20, 20));
+        pellets.add(new Rectangle(630, 630, 20, 20));
         
         // Used to keep track of time used to draw and update the game
         // This is used to limit the framerate later on
@@ -486,17 +601,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 }
             }
             
-            //creating death touch for ghostie wosties
-            if(player.intersects(blinky)){
-                player.x = 600;
-                player.y = 600;
-            }else if(player.intersects(pinky)){
-                player.x = 600;
-                player.y = 600;
-            }else if(player.intersects(inky)){
-                player.x = 600;
-                player.y = 600;
-            }
+            
             
             
             
