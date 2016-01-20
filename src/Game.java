@@ -601,6 +601,17 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 }
             }
             
+            //creating death touch for ghostie wosties
+            if(player.intersects(blinky)){
+                player.x = 600;
+                player.y = 600;
+            }else if(player.intersects(pinky)){
+                player.x = 600;
+                player.y = 600;
+            }else if(player.intersects(inky)){
+                player.x = 600;
+                player.y = 600;
+            }
             
             
             
