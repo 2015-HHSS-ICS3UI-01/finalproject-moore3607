@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -36,15 +37,17 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     //extra variables
     boolean dead = false;
     int lives = 3;
+    boolean start = false;
     // block
     ArrayList<Rectangle> blocks = new ArrayList<>();
     ArrayList<Rectangle> pellets = new ArrayList<>();
     //player
-    Rectangle player = new Rectangle(600, 600, 50, 50);
+    Rectangle player = new Rectangle(610, 610, 50, 50);
     //ghostie wosties
-    Rectangle blinky = new Rectangle(610, 200, 50, 50);
-    Rectangle pinky = new Rectangle(550, 200, 50, 50);
-    Rectangle inky = new Rectangle(670, 200, 50, 50);
+    Rectangle blinky = new Rectangle(610, 170, 50, 50);
+    Rectangle pinky = new Rectangle(550, 170, 50, 50);
+    Rectangle inky = new Rectangle(670, 170, 50, 50);
+    Rectangle clinky = new Rectangle(730, 170, 50, 50);
     int moveX = 0;
     int moveY = 0;
     int blinkyX = 0;
@@ -53,6 +56,8 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     int pinkyY = 0;
     int inkyX = 0;
     int inkyY = 0;
+    int clinkyX = 0;
+    int clinkyY = 0;
     //keyboard variables
     boolean up = false;
     boolean down = false;
@@ -82,7 +87,14 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
             g.fillOval(circle.x, circle.y, circle.width, circle.height);
         }
 
+        //start screen
+        if (start == false) {
+            Font startfont = new Font("Arial", Font.BOLD, 50);
+            g.setFont(startfont);
+            g.setColor(Color.WHITE);
+            g.drawString("Press any arrow key to start!", 250, 400);
 
+        }
 
         //player
         g.setColor(Color.YELLOW);
@@ -94,6 +106,35 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         g.fillRect(pinky.x, pinky.y, 50, 50);
         g.setColor(Color.cyan);
         g.fillRect(inky.x, inky.y, 50, 50);
+        g.setColor(Color.ORANGE);
+        g.fillRect(clinky.x, clinky.y, 50, 50);
+
+        //lives
+        g.setColor(Color.YELLOW);
+        if (lives == 3) {
+            g.fillRect(20, 745, 50, 50);
+            g.fillRect(80, 745, 50, 50);
+            g.fillRect(140, 745, 50, 50);
+        } else if (lives == 2) {
+            g.fillRect(20, 745, 50, 50);
+            g.fillRect(80, 745, 50, 50);
+            g.setColor(Color.BLACK);
+            g.fillRect(140, 745, 50, 50);
+        } else if (lives == 1) {
+            g.fillRect(20, 745, 50, 50);
+            g.setColor(Color.BLACK);
+            g.fillRect(80, 745, 50, 50);
+            g.fillRect(140, 745, 50, 50);
+        } else if (lives <= 0) {
+            g.setColor(Color.BLACK);
+            g.fillRect(20, 745, 50, 50);
+            g.fillRect(80, 745, 50, 50);
+            g.fillRect(140, 745, 50, 50);
+            Font lose = new Font("Arial", Font.BOLD, 100);
+            g.setFont(lose);
+            g.setColor(Color.WHITE);
+            g.drawString("You Lose!", 400, 400);
+        }
 
 
         // GAME DRAWING ENDS HERE
@@ -181,8 +222,8 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(530, 360, 220, 20));
         //line leading left from bottom part of (bottom)
         blocks.add(new Rectangle(730, 590, 90, 20));
-        
-        
+
+
         //bottom part of inner center
 
 
@@ -209,7 +250,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(790, 150, 80, 20));
         //horizontal line intersecting right of top middle line
         blocks.add(new Rectangle(650, 150, 80, 20));
-        
+
 
         //BOTTOM LEFT
         //horizontal line on bottom left T
@@ -236,8 +277,8 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(870, 590, 260, 20));
         //line leading down from ^
         blocks.add(new Rectangle(1110, 590, 20, 80));
-        
-        
+
+
         //PELLETS
         //first top left horizontal line
         pellets.add(new Rectangle(35, 115, 20, 20));
@@ -359,7 +400,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(560, 630, 20, 20));
         pellets.add(new Rectangle(595, 630, 20, 20));
         pellets.add(new Rectangle(630, 630, 20, 20));
-        
+
         //middle outer center horizontal line
         pellets.add(new Rectangle(625, 555, 20, 20));
         pellets.add(new Rectangle(590, 555, 20, 20));
@@ -368,7 +409,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(485, 555, 20, 20));
         pellets.add(new Rectangle(455, 555, 20, 20));
         pellets.add(new Rectangle(425, 555, 20, 20));
-        
+
         //left-most outer center vertical line
         pellets.add(new Rectangle(425, 515, 20, 20));
         pellets.add(new Rectangle(425, 475, 20, 20));
@@ -379,7 +420,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(425, 275, 20, 20));
         pellets.add(new Rectangle(425, 230, 20, 20));
         pellets.add(new Rectangle(425, 185, 20, 20));
-        
+
         //top outer center horizontal line
         pellets.add(new Rectangle(465, 185, 20, 20));
         pellets.add(new Rectangle(505, 185, 20, 20));
@@ -391,7 +432,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(745, 185, 20, 20));
         pellets.add(new Rectangle(790, 185, 20, 20));
         pellets.add(new Rectangle(835, 185, 20, 20));
-        
+
         //right-most outer center vertical line
         pellets.add(new Rectangle(835, 225, 20, 20));
         pellets.add(new Rectangle(835, 260, 20, 20));
@@ -404,21 +445,21 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(835, 550, 20, 20));
         pellets.add(new Rectangle(835, 590, 20, 20));
         pellets.add(new Rectangle(835, 625, 20, 20));
-        
+
         //bottom inner center horizontal line
         pellets.add(new Rectangle(800, 625, 20, 20));
         pellets.add(new Rectangle(765, 625, 20, 20));
         pellets.add(new Rectangle(730, 625, 20, 20));
         pellets.add(new Rectangle(695, 625, 20, 20));
-        
+
         //bottom inner center vertical line
         pellets.add(new Rectangle(695, 590, 20, 20));
         pellets.add(new Rectangle(695, 555, 20, 20));
-        
+
         //second bottom (second last) inner center horizontal line
         pellets.add(new Rectangle(730, 555, 20, 20));
         pellets.add(new Rectangle(765, 555, 20, 20));
-        
+
         //right-most inner center vertical line
         pellets.add(new Rectangle(765, 530, 20, 20));
         pellets.add(new Rectangle(765, 500, 20, 20));
@@ -427,32 +468,32 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(765, 395, 20, 20));
         pellets.add(new Rectangle(765, 360, 20, 20));
         pellets.add(new Rectangle(765, 325, 20, 20));
-        
+
         //middle inner center horizontal line
         pellets.add(new Rectangle(725, 395, 20, 20));
         pellets.add(new Rectangle(685, 395, 20, 20));
         pellets.add(new Rectangle(640, 395, 20, 20));
         pellets.add(new Rectangle(600, 395, 20, 20));
         pellets.add(new Rectangle(565, 395, 20, 20));
-        
+
         //right core vertical
         pellets.add(new Rectangle(640, 425, 20, 20));
         pellets.add(new Rectangle(640, 455, 20, 20));
         pellets.add(new Rectangle(640, 490, 20, 20));
-        
+
         //right core lower section
         pellets.add(new Rectangle(670, 490, 20, 20));
         pellets.add(new Rectangle(700, 490, 20, 20));
         pellets.add(new Rectangle(700, 460, 20, 20));
         pellets.add(new Rectangle(730, 460, 20, 20));
-        
+
         //left core lower section
         pellets.add(new Rectangle(565, 425, 20, 20));
         pellets.add(new Rectangle(565, 455, 20, 20));
         pellets.add(new Rectangle(565, 485, 20, 20));
         pellets.add(new Rectangle(530, 485, 20, 20));
         pellets.add(new Rectangle(495, 485, 20, 20));
-        
+
         //left-most inner center vertical line
         pellets.add(new Rectangle(495, 445, 20, 20));
         pellets.add(new Rectangle(495, 405, 20, 20));
@@ -460,7 +501,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(495, 325, 20, 20));
         pellets.add(new Rectangle(495, 290, 20, 20));
         pellets.add(new Rectangle(495, 255, 20, 20));
-        
+
         //top inner center horizontal line
         pellets.add(new Rectangle(535, 255, 20, 20));
         pellets.add(new Rectangle(575, 255, 20, 20));
@@ -471,7 +512,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(775, 255, 20, 20));
         pellets.add(new Rectangle(805, 255, 20, 20));
         pellets.add(new Rectangle(495, 255, 20, 20));
-        
+
         //second inner center horizontal line
         pellets.add(new Rectangle(725, 325, 20, 20));
         pellets.add(new Rectangle(685, 325, 20, 20));
@@ -479,7 +520,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(605, 325, 20, 20));
         pellets.add(new Rectangle(565, 325, 20, 20));
         pellets.add(new Rectangle(530, 325, 20, 20));
-        
+
         // Used to keep track of time used to draw and update the game
         // This is used to limit the framerate later on
         long startTime;
@@ -498,235 +539,325 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
 
-
-            //moving the player
-            if (left) {
-                right = false;
-                up = false;
-                down = false;
-                moveY = 0;
-                moveX = -2;
-            } else if (right) {
-                left = false;
-                up = false;
-                down = false;
-                moveY = 0;
-                moveX = 2;
-            } else if (up) {
-                left = false;
-                right = false;
-                down = false;
-                moveX = 0;
-                moveY = -2;
-            } else if (down) {
-                left = false;
-                right = false;
-                up = false;
-                moveX = 0;
-                moveY = 2;
+            if ((up
+                    || down
+                    || left
+                    || right) && !start) {
+                start = true;
             }
 
-
-            if (blinkyX == 0 && blinkyY == 0) {
-                blinkyX = 0;
-                blinkyY = 0;
-            }
-
-
-            if (System.currentTimeMillis() > deadtimer) {
-                player.x = player.x + moveX;
-                player.y = player.y + moveY;
-                blinky.x = blinky.x + blinkyX;
-                blinky.y = blinky.y + blinkyY;
-                pinky.x = pinky.x + pinkyX;
-                pinky.y = pinky.y + pinkyY;
-                inky.x = inky.x + inkyX;
-                inky.y = inky.y + inkyY;
-                if (dead) {
-                    player.x = 600;
-                    player.y = 600;
-                    dead = false;
+            if (start) {
+                //moving the player
+                if (left) {
+                    right = false;
+                    up = false;
+                    down = false;
+                    moveY = 0;
+                    moveX = -2;
+                } else if (right) {
+                    left = false;
+                    up = false;
+                    down = false;
+                    moveY = 0;
+                    moveX = 2;
+                } else if (up) {
+                    left = false;
+                    right = false;
+                    down = false;
+                    moveX = 0;
+                    moveY = -2;
+                } else if (down) {
+                    left = false;
+                    right = false;
+                    up = false;
+                    moveX = 0;
+                    moveY = 2;
                 }
-            }
 
 
-            //go through all blocks
-            for (Rectangle block : blocks) {
-                //is the player hitting a block
-                if (player.intersects(block)) {
-                    //get the collision rectangle
-                    Rectangle intersection = player.intersection(block);
-                    //fix the x movement
-                    if (intersection.width < intersection.height) {
-                        if (player.x < block.x) {
-                            //move the player the overlap
-                            player.x = player.x - intersection.width;
-                        } else {
-                            player.x = player.x + intersection.width;
-                        }
-                    } else { //fix the y
-                        //hit the block with my head
-                        if (player.y > block.y) {
-                            player.y = player.y + intersection.height;
-                            moveY = 0;
-                        } else {
-                            player.y = player.y - intersection.height;
-                            moveY = 0;
-                        }
-                    }
-                }
-            }
-
-            //go through all blocks
-            for (Rectangle block : blocks) {
-                //is the player hitting a block
-                if (blinky.intersects(block)) {
-                    //get the collision rectangle
-                    Rectangle intersection = blinky.intersection(block);
-                    //fix the x movement
-                    if (intersection.width < intersection.height) {
-                        if (blinky.x < block.x) {
-                            //move the player the overlap
-                            blinky.x = blinky.x - intersection.width;
-                            blinkyX = 0;
-                        } else {
-                            blinky.x = blinky.x + intersection.width;
-                            blinkyX = 0;
-                        }
-                    } else { //fix the y
-                        //hit the block with my head
-                        if (blinky.y > block.y) {
-                            blinky.y = blinky.y + intersection.height;
-                            blinkyY = 0;
-                        } else {
-                            blinky.y = blinky.y - intersection.height;
-                            blinkyY = 0;
-                        }
-                    }
-                }
-            }
-
-            //go through all blocks
-            for (Rectangle block : blocks) {
-                //is the player hitting a block
-                if (pinky.intersects(block)) {
-                    //get the collision rectangle
-                    Rectangle intersection = pinky.intersection(block);
-                    //fix the x movement
-                    if (intersection.width < intersection.height) {
-                        if (pinky.x < block.x) {
-                            //move the player the overlap
-                            pinky.x = pinky.x - intersection.width;
-                            pinkyX = 0;
-                        } else {
-                            pinky.x = pinky.x + intersection.width;
-                            pinkyX = 0;
-                        }
-                    } else { //fix the y
-                        //hit the block with my head
-                        if (pinky.y > block.y) {
-                            pinky.y = pinky.y + intersection.height;
-                            pinkyY = 0;
-                        } else {
-                            pinky.y = pinky.y - intersection.height;
-                            pinkyY = 0;
-                        }
-                    }
-                }
-            }
-
-            //go through all blocks
-            for (Rectangle block : blocks) {
-                //is the player hitting a block
-                if (inky.intersects(block)) {
-                    //get the collision rectangle
-                    Rectangle intersection = inky.intersection(block);
-                    //fix the x movement
-                    if (intersection.width < intersection.height) {
-                        if (inky.x < block.x) {
-                            //move the player the overlap
-                            inky.x = inky.x - intersection.width;
-                            inkyX = 0;
-                        } else {
-                            inky.x = inky.x + intersection.width;
-                            inkyX = 0;
-                        }
-                    } else { //fix the y
-                        //hit the block with my head
-                        if (inky.y > block.y) {
-                            inky.y = inky.y + intersection.height;
-                            inkyY = 0;
-                        } else {
-                            inky.y = inky.y - intersection.height;
-                            inkyY = 0;
-                        }
-                    }
-                }
-            }
-
-            //go through all blocks
-            for (Rectangle block : pellets) {
-                //is the player hitting a block
-                if (player.intersects(block)) {
-                    pellets.remove(block);
-                    break;
-                }
-            }
-
-            //moving the ghostie wosties
-            if (blinkyX == 0 && blinkyY == 0) {
-                if (rand == 0) {
-                    blinkyX = -2;
-                    blinkyY = 0;
-                } else if (rand == 1) {
-                    blinkyX = 2;
-                    blinkyY = 0;
-                } else if (rand == 2) {
+                if (blinkyX == 0 && blinkyY == 0) {
                     blinkyX = 0;
-                    blinkyY = -2;
-                } else if (rand == 3) {
-                    blinkyX = 0;
-                    blinkyY = 2;
+                    blinkyY = 0;
                 }
-            }
 
-            if (pinkyX == 0 && pinkyY == 0) {
-                if (rand == 0) {
-                    pinkyX = -2;
-                    pinkyY = 0;
-                } else if (rand == 1) {
-                    pinkyX = 2;
-                    pinkyY = 0;
-                } else if (rand == 2) {
-                    pinkyX = 0;
-                    pinkyY = -2;
-                } else if (rand == 3) {
-                    pinkyX = 0;
-                    pinkyY = 2;
+
+                if (System.currentTimeMillis() > deadtimer) {
+                    player.x = player.x + moveX;
+                    player.y = player.y + moveY;
+                    blinky.x = blinky.x + blinkyX;
+                    blinky.y = blinky.y + blinkyY;
+                    pinky.x = pinky.x + pinkyX;
+                    pinky.y = pinky.y + pinkyY;
+                    inky.x = inky.x + inkyX;
+                    inky.y = inky.y + inkyY;
+                    clinky.x = clinky.x + clinkyX;
+                    clinky.y = clinky.y + clinkyY;
+                    if (dead) {
+                        player.x = 610;
+                        player.y = 610;
+                        moveX = 0;
+                        moveY = 0;
+                        blinky.x = 610;
+                        blinky.y = 170;
+                        blinkyX = 0;
+                        blinkyY = 0;
+                        pinky.x = 550;
+                        pinky.y = 170;
+                        pinkyX = 0;
+                        pinkyY = 0;
+                        inky.x = 670;
+                        inky.y = 170;
+                        inkyX = 0;
+                        inkyY = 0;
+                        clinky.x = 730;
+                        clinky.y = 170;
+                        clinkyX = 0;
+                        clinkyY = 0;
+                        dead = false;
+                    }
                 }
-            }
 
-            if (inkyX == 0 && inkyY == 0) {
-                if (rand == 0) {
-                    inkyX = -2;
-                    inkyY = 0;
-                } else if (rand == 1) {
-                    inkyX = 2;
-                    inkyY = 0;
-                } else if (rand == 2) {
-                    inkyX = 0;
-                    inkyY = -2;
-                } else if (rand == 3) {
-                    inkyX = 0;
-                    inkyY = 2;
+
+                //go through all blocks
+                for (Rectangle block : blocks) {
+                    //is the player hitting a block
+                    if (player.intersects(block)) {
+                        //get the collision rectangle
+                        Rectangle intersection = player.intersection(block);
+                        //fix the x movement
+                        if (intersection.width < intersection.height) {
+                            if (player.x < block.x) {
+                                //move the player the overlap
+                                player.x = player.x - intersection.width;
+                            } else {
+                                player.x = player.x + intersection.width;
+                            }
+                        } else { //fix the y
+                            //hit the block with my head
+                            if (player.y > block.y) {
+                                player.y = player.y + intersection.height;
+                                moveY = 0;
+                            } else {
+                                player.y = player.y - intersection.height;
+                                moveY = 0;
+                            }
+                        }
+                    }
                 }
+
+                //go through all blocks
+                for (Rectangle block : blocks) {
+                    //is the player hitting a block
+                    if (blinky.intersects(block)) {
+                        //get the collision rectangle
+                        Rectangle intersection = blinky.intersection(block);
+                        //fix the x movement
+                        if (intersection.width < intersection.height) {
+                            if (blinky.x < block.x) {
+                                //move the player the overlap
+                                blinky.x = blinky.x - intersection.width;
+                                blinkyX = 0;
+                            } else {
+                                blinky.x = blinky.x + intersection.width;
+                                blinkyX = 0;
+                            }
+                        } else { //fix the y
+                            //hit the block with my head
+                            if (blinky.y > block.y) {
+                                blinky.y = blinky.y + intersection.height;
+                                blinkyY = 0;
+                            } else {
+                                blinky.y = blinky.y - intersection.height;
+                                blinkyY = 0;
+                            }
+                        }
+                    }
+                }
+
+                //go through all blocks
+                for (Rectangle block : blocks) {
+                    //is the player hitting a block
+                    if (pinky.intersects(block)) {
+                        //get the collision rectangle
+                        Rectangle intersection = pinky.intersection(block);
+                        //fix the x movement
+                        if (intersection.width < intersection.height) {
+                            if (pinky.x < block.x) {
+                                //move the player the overlap
+                                pinky.x = pinky.x - intersection.width;
+                                pinkyX = 0;
+                            } else {
+                                pinky.x = pinky.x + intersection.width;
+                                pinkyX = 0;
+                            }
+                        } else { //fix the y
+                            //hit the block with my head
+                            if (pinky.y > block.y) {
+                                pinky.y = pinky.y + intersection.height;
+                                pinkyY = 0;
+                            } else {
+                                pinky.y = pinky.y - intersection.height;
+                                pinkyY = 0;
+                            }
+                        }
+                    }
+                }
+
+                //go through all blocks
+                for (Rectangle block : blocks) {
+                    //is the player hitting a block
+                    if (inky.intersects(block)) {
+                        //get the collision rectangle
+                        Rectangle intersection = inky.intersection(block);
+                        //fix the x movement
+                        if (intersection.width < intersection.height) {
+                            if (inky.x < block.x) {
+                                //move the player the overlap
+                                inky.x = inky.x - intersection.width;
+                                inkyX = 0;
+                            } else {
+                                inky.x = inky.x + intersection.width;
+                                inkyX = 0;
+                            }
+                        } else { //fix the y
+                            //hit the block with my head
+                            if (inky.y > block.y) {
+                                inky.y = inky.y + intersection.height;
+                                inkyY = 0;
+                            } else {
+                                inky.y = inky.y - intersection.height;
+                                inkyY = 0;
+                            }
+                        }
+                    }
+                }
+
+                //go through all blocks
+                for (Rectangle block : blocks) {
+                    //is the player hitting a block
+                    if (clinky.intersects(block)) {
+                        //get the collision rectangle
+                        Rectangle intersection = clinky.intersection(block);
+                        //fix the x movement
+                        if (intersection.width < intersection.height) {
+                            if (clinky.x < block.x) {
+                                //move the player the overlap
+                                clinky.x = clinky.x - intersection.width;
+                                clinkyX = 0;
+                            } else {
+                                clinky.x = clinky.x + intersection.width;
+                                clinkyX = 0;
+                            }
+                        } else { //fix the y
+                            //hit the block with my head
+                            if (clinky.y > block.y) {
+                                clinky.y = clinky.y + intersection.height;
+                                clinkyY = 0;
+                            } else {
+                                clinky.y = clinky.y - intersection.height;
+                                clinkyY = 0;
+                            }
+                        }
+                    }
+                }
+
+                //go through all blocks
+                for (Rectangle block : pellets) {
+                    //is the player hitting a block
+                    if (player.intersects(block)) {
+                        pellets.remove(block);
+                        break;
+                    }
+                }
+
+                //moving the ghostie wosties
+                if (blinkyX == 0 && blinkyY == 0) {
+                    if (rand == 0) {
+                        blinkyX = -2;
+                        blinkyY = 0;
+                    } else if (rand == 1) {
+                        blinkyX = 2;
+                        blinkyY = 0;
+                    } else if (rand == 2) {
+                        blinkyX = 0;
+                        blinkyY = -2;
+                    } else if (rand == 3) {
+                        blinkyX = 0;
+                        blinkyY = 2;
+                    }
+                }
+
+                if (pinkyX == 0 && pinkyY == 0) {
+                    if (rand == 0) {
+                        pinkyX = -2;
+                        pinkyY = 0;
+                    } else if (rand == 1) {
+                        pinkyX = 2;
+                        pinkyY = 0;
+                    } else if (rand == 2) {
+                        pinkyX = 0;
+                        pinkyY = -2;
+                    } else if (rand == 3) {
+                        pinkyX = 0;
+                        pinkyY = 2;
+                    }
+                }
+
+                if (inkyX == 0 && inkyY == 0) {
+                    if (rand == 0) {
+                        inkyX = -2;
+                        inkyY = 0;
+                    } else if (rand == 1) {
+                        inkyX = 2;
+                        inkyY = 0;
+                    } else if (rand == 2) {
+                        inkyX = 0;
+                        inkyY = -2;
+                    } else if (rand == 3) {
+                        inkyX = 0;
+                        inkyY = 2;
+                    }
+                }
+
+                if (clinkyX == 0 && clinkyY == 0) {
+                    if (rand == 0) {
+                        clinkyX = -2;
+                        clinkyY = 0;
+                    } else if (rand == 1) {
+                        clinkyX = 2;
+                        clinkyY = 0;
+                    } else if (rand == 2) {
+                        clinkyX = 0;
+                        clinkyY = -2;
+                    } else if (rand == 3) {
+                        clinkyX = 0;
+                        clinkyY = 2;
+                    }
+                }
+
+                //creating death touch for ghostie wosties
+                if (!dead) {
+                    if (player.intersects(blinky)) {
+                        deadtimer = System.currentTimeMillis() + 2000;
+                        dead = true;
+                        lives = lives - 1;
+                    } else if (player.intersects(pinky)) {
+                        deadtimer = System.currentTimeMillis() + 2000;
+                        dead = true;
+                        lives = lives - 1;
+                    } else if (player.intersects(inky)) {
+                        deadtimer = System.currentTimeMillis() + 2000;
+                        dead = true;
+                        lives = lives - 1;
+                    } else if (player.intersects(clinky)) {
+                        deadtimer = System.currentTimeMillis() + 2000;
+                        dead = true;
+                        lives = lives - 1;
+                    }
+                }
+
+
             }
-
-            //creating death touch for ghostie wosties
-
-
-
-
 
 
 
