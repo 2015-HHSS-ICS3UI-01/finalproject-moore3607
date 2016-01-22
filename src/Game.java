@@ -228,14 +228,14 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
 
         //TOP AND MIDDLE LEFT
-        //top left T horizontal
-        blocks.add(new Rectangle(70, 150, 510, 20));
+        //(left) top left T horizontal
+        blocks.add(new Rectangle(70, 150, 110, 20));
+        //(right) top left T horizontal
+        blocks.add(new Rectangle(230, 150, 350, 20));
         //(top) top left T vertical
         blocks.add(new Rectangle(390, 160, 20, 290));
         //(bottom) top left T vertical
         blocks.add(new Rectangle(390, 500, 20, 110));
-        //line hangling from right side of T horizontal
-        blocks.add(new Rectangle(560, 150, 20, 20));
 
         //TOP AND MIDDLE RIGHT
         //top middle virtical line
@@ -249,7 +249,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //horizontal line intersecting left of top right C
         blocks.add(new Rectangle(790, 150, 80, 20));
         //horizontal line intersecting right of top middle line
-        blocks.add(new Rectangle(650, 150, 80, 20));
+        blocks.add(new Rectangle(650, 150, 90, 20));
 
 
         //BOTTOM LEFT
@@ -258,7 +258,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //(top) vertical line on bottom left T
         blocks.add(new Rectangle(250, 400, 20, 50));
         //(bottom) vertical line on bottom left T 
-        blocks.add(new Rectangle(250, 505, 20, 90));
+        blocks.add(new Rectangle(250, 500, 20, 100));
         //verticle line coming from main floor (left)
         blocks.add(new Rectangle(320, 450, 20, 210));
         //horizontal line going into bottom left indent
@@ -773,65 +773,65 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 //moving the ghostie wosties
                 if (blinkyX == 0 && blinkyY == 0) {
                     if (rand == 0) {
-                        blinkyX = -2;
+                        blinkyX = -3;
                         blinkyY = 0;
                     } else if (rand == 1) {
-                        blinkyX = 2;
+                        blinkyX = 3;
                         blinkyY = 0;
                     } else if (rand == 2) {
                         blinkyX = 0;
-                        blinkyY = -2;
+                        blinkyY = -3;
                     } else if (rand == 3) {
                         blinkyX = 0;
-                        blinkyY = 2;
+                        blinkyY = 3;
                     }
                 }
 
                 if (pinkyX == 0 && pinkyY == 0) {
                     if (rand == 0) {
-                        pinkyX = -2;
+                        pinkyX = -3;
                         pinkyY = 0;
                     } else if (rand == 1) {
-                        pinkyX = 2;
+                        pinkyX = 3;
                         pinkyY = 0;
                     } else if (rand == 2) {
                         pinkyX = 0;
-                        pinkyY = -2;
+                        pinkyY = -3;
                     } else if (rand == 3) {
                         pinkyX = 0;
-                        pinkyY = 2;
+                        pinkyY = 3;
                     }
                 }
 
                 if (inkyX == 0 && inkyY == 0) {
                     if (rand == 0) {
-                        inkyX = -2;
+                        inkyX = -3;
                         inkyY = 0;
                     } else if (rand == 1) {
-                        inkyX = 2;
+                        inkyX = 3;
                         inkyY = 0;
                     } else if (rand == 2) {
                         inkyX = 0;
-                        inkyY = -2;
+                        inkyY = -3;
                     } else if (rand == 3) {
                         inkyX = 0;
-                        inkyY = 2;
+                        inkyY = 3;
                     }
                 }
 
                 if (clinkyX == 0 && clinkyY == 0) {
                     if (rand == 0) {
-                        clinkyX = -2;
+                        clinkyX = -3;
                         clinkyY = 0;
                     } else if (rand == 1) {
-                        clinkyX = 2;
+                        clinkyX = 3;
                         clinkyY = 0;
                     } else if (rand == 2) {
                         clinkyX = 0;
-                        clinkyY = -2;
+                        clinkyY = -3;
                     } else if (rand == 3) {
                         clinkyX = 0;
-                        clinkyY = 2;
+                        clinkyY = 3;
                     }
                 }
 
@@ -857,6 +857,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 }
 
 
+            }
+            
+            if(lives == 0){
+                done = true;
             }
 
 
