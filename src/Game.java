@@ -33,11 +33,13 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     int mouseX = 0;
     int mouseY = 0;
     boolean buttonPressed = false;
+    //delay variables
     long deadtimer = 0;
     //extra variables
     boolean dead = false;
     int lives = 3;
     boolean start = false;
+    int pelletcounter = 10;
     // block
     ArrayList<Rectangle> blocks = new ArrayList<>();
     ArrayList<Rectangle> pellets = new ArrayList<>();
@@ -89,11 +91,20 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
         //start screen
         if (start == false) {
-            Font startfont = new Font("Arial", Font.BOLD, 50);
-            g.setFont(startfont);
+            Font gamefont = new Font("Arial", Font.BOLD, 50);
+            g.setFont(gamefont);
             g.setColor(Color.WHITE);
             g.drawString("Press any arrow key to start!", 250, 400);
 
+        }
+
+        //if the player removes all pellets, the words "You Win!" will come
+        //onto the screen
+        if (pelletcounter == 0) {
+            Font gamefont = new Font("Arial", Font.BOLD, 40);
+            g.setFont(gamefont);
+            g.setColor(Color.WHITE);
+            g.drawString("You Win! Please reload the program to restart.", 105, 400);
         }
 
         //player
@@ -130,156 +141,18 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
             g.fillRect(20, 745, 50, 50);
             g.fillRect(80, 745, 50, 50);
             g.fillRect(140, 745, 50, 50);
-            Font lose = new Font("Arial", Font.BOLD, 100);
-            g.setFont(lose);
+            Font gamefont = new Font("Arial", Font.BOLD, 40);
+            g.setFont(gamefont);
             g.setColor(Color.WHITE);
-            g.drawString("You Lose!", 400, 400);
+            g.drawString("You Lose! Please reload the program to restart.", 105, 400);
         }
 
 
         // GAME DRAWING ENDS HERE
     }
 
-    // The main game loop
-    // In here is where all the logic for my game will go
-    public void run() {
-
-
-        //blocks
-        //PERIMETER
-        //main floor left
-        blocks.add(new Rectangle(0, 720, 160, 20));
-        //main floor right
-        blocks.add(new Rectangle(1040, 720, 160, 20));
-        //bottom left wall
-        blocks.add(new Rectangle(0, 520, 20, 200));
-        //bottom left roof
-        blocks.add(new Rectangle(0, 520, 200, 20));
-        //transition from bottom to middle
-        blocks.add(new Rectangle(180, 450, 20, 70));
-        //middle left floor
-        blocks.add(new Rectangle(0, 450, 180, 20));
-        //middle left wall
-        blocks.add(new Rectangle(0, 320, 20, 130));
-        //middle left roof
-        blocks.add(new Rectangle(0, 310, 320, 20));
-        //transition from middle to top
-        blocks.add(new Rectangle(320, 220, 20, 110));
-        //top left floor
-        blocks.add(new Rectangle(0, 220, 340, 20));
-        //top left wall
-        blocks.add(new Rectangle(0, 80, 20, 140));
-        //main roof 
-        blocks.add(new Rectangle(0, 80, 1180, 20));
-        //top right wall
-        blocks.add(new Rectangle(1180, 80, 20, 160));
-        //top right floor
-        blocks.add(new Rectangle(940, 220, 240, 20));
-        //transition from top to middle
-        blocks.add(new Rectangle(940, 220, 20, 100));
-        //middle right roof
-        blocks.add(new Rectangle(940, 300, 260, 20));
-        //middle right wall
-        blocks.add(new Rectangle(1180, 300, 20, 160));
-        //middle right floor
-        blocks.add(new Rectangle(940, 440, 260, 20));
-        //transition from middle to bottom
-        blocks.add(new Rectangle(940, 460, 20, 60));
-        //bottom right roof
-        blocks.add(new Rectangle(940, 520, 260, 20));
-        //bottom right wall
-        blocks.add(new Rectangle(1180, 520, 20, 200));
-
-        //CENTER
-        //left long horizontal line below center
-        blocks.add(new Rectangle(410, 590, 200, 20));
-        //corner (vertical) at bottom leading into center area
-        blocks.add(new Rectangle(660, 520, 20, 140));
-        //line (horizontal) leading left from the corner
-        blocks.add(new Rectangle(460, 520, 290, 20));
-        //middle line poking up from ^
-        blocks.add(new Rectangle(600, 430, 20, 100));
-        //left line leading back to top from ^^
-        blocks.add(new Rectangle(460, 220, 20, 300));
-        //right line poking up from ^^^
-        blocks.add(new Rectangle(735, 500, 15, 40));
-        //line leading right from ^^
-        blocks.add(new Rectangle(460, 220, 360, 20));
-        //line leading right from middle poke
-        blocks.add(new Rectangle(670, 430, 80, 20));
-        //line leading down from ^
-        blocks.add(new Rectangle(670, 430, 15, 40));
-
-
-        //top part of inner center 
-        //(bottom) line leading down from ^^
-        blocks.add(new Rectangle(800, 290, 20, 320));
-        //line leading left from top part of (bottom)
-        blocks.add(new Rectangle(530, 290, 280, 20));
-        //line (with hole above it) leading down from ^
-        blocks.add(new Rectangle(530, 360, 20, 110));
-        //line leading right from ^
-        blocks.add(new Rectangle(530, 360, 220, 20));
-        //line leading left from bottom part of (bottom)
-        blocks.add(new Rectangle(730, 590, 90, 20));
-
-
-        //bottom part of inner center
-
-
-        //TOP AND MIDDLE LEFT
-        //(left) top left T horizontal
-        blocks.add(new Rectangle(70, 150, 110, 20));
-        //(right) top left T horizontal
-        blocks.add(new Rectangle(230, 150, 350, 20));
-        //(top) top left T vertical
-        blocks.add(new Rectangle(390, 160, 20, 290));
-        //(bottom) top left T vertical
-        blocks.add(new Rectangle(390, 500, 20, 110));
-
-        //TOP AND MIDDLE RIGHT
-        //top middle virtical line
-        blocks.add(new Rectangle(630, 80, 20, 90));
-        //top right C vertical
-        blocks.add(new Rectangle(870, 150, 20, 460));
-        //top right C top horizontal
-        blocks.add(new Rectangle(870, 150, 260, 20));
-        //top right C bottom horizontal
-        blocks.add(new Rectangle(870, 370, 260, 20));
-        //horizontal line intersecting left of top right C
-        blocks.add(new Rectangle(790, 150, 80, 20));
-        //horizontal line intersecting right of top middle line
-        blocks.add(new Rectangle(650, 150, 90, 20));
-
-
-        //BOTTOM LEFT
-        //horizontal line on bottom left T
-        blocks.add(new Rectangle(70, 380, 330, 20));
-        //(top) vertical line on bottom left T
-        blocks.add(new Rectangle(250, 400, 20, 50));
-        //(bottom) vertical line on bottom left T 
-        blocks.add(new Rectangle(250, 500, 20, 100));
-        //verticle line coming from main floor (left)
-        blocks.add(new Rectangle(320, 450, 20, 210));
-        //horizontal line going into bottom left indent
-        blocks.add(new Rectangle(70, 590, 200, 20));
-        //verticle line going down in bottom left indent
-        blocks.add(new Rectangle(70, 590, 20, 80));
-        //left verticle line going up from the main floor
-        blocks.add(new Rectangle(140, 660, 20, 60));
-        //right verticle line going up from the main floor
-        blocks.add(new Rectangle(1040, 660, 20, 60));
-        //long horizontal line above main floor
-        blocks.add(new Rectangle(140, 660, 920, 20));
-
-        //BOTTOM RIGHT
-        //line leading right from verticle line of top right C
-        blocks.add(new Rectangle(870, 590, 260, 20));
-        //line leading down from ^
-        blocks.add(new Rectangle(1110, 590, 20, 80));
-
-
-        //PELLETS
+    public void addPellets() {
+        pellets.clear();
         //first top left horizontal line
         pellets.add(new Rectangle(35, 115, 20, 20));
         pellets.add(new Rectangle(75, 115, 20, 20));
@@ -520,6 +393,149 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(605, 325, 20, 20));
         pellets.add(new Rectangle(565, 325, 20, 20));
         pellets.add(new Rectangle(530, 325, 20, 20));
+    }
+
+    // The main game loop
+    // In here is where all the logic for my game will go
+    public void run() {
+
+
+        //blocks
+        //PERIMETER
+        //main floor left
+        blocks.add(new Rectangle(0, 720, 160, 20));
+        //main floor right
+        blocks.add(new Rectangle(1040, 720, 160, 20));
+        //bottom left wall
+        blocks.add(new Rectangle(0, 520, 20, 200));
+        //bottom left roof
+        blocks.add(new Rectangle(0, 520, 200, 20));
+        //transition from bottom to middle
+        blocks.add(new Rectangle(180, 450, 20, 70));
+        //middle left floor
+        blocks.add(new Rectangle(0, 450, 180, 20));
+        //middle left wall
+        blocks.add(new Rectangle(0, 320, 20, 130));
+        //middle left roof
+        blocks.add(new Rectangle(0, 310, 320, 20));
+        //transition from middle to top
+        blocks.add(new Rectangle(320, 220, 20, 110));
+        //top left floor
+        blocks.add(new Rectangle(0, 220, 340, 20));
+        //top left wall
+        blocks.add(new Rectangle(0, 80, 20, 140));
+        //main roof 
+        blocks.add(new Rectangle(0, 80, 1180, 20));
+        //top right wall
+        blocks.add(new Rectangle(1180, 80, 20, 160));
+        //top right floor
+        blocks.add(new Rectangle(940, 220, 240, 20));
+        //transition from top to middle
+        blocks.add(new Rectangle(940, 220, 20, 100));
+        //middle right roof
+        blocks.add(new Rectangle(940, 300, 260, 20));
+        //middle right wall
+        blocks.add(new Rectangle(1180, 300, 20, 160));
+        //middle right floor
+        blocks.add(new Rectangle(940, 440, 260, 20));
+        //transition from middle to bottom
+        blocks.add(new Rectangle(940, 460, 20, 60));
+        //bottom right roof
+        blocks.add(new Rectangle(940, 520, 260, 20));
+        //bottom right wall
+        blocks.add(new Rectangle(1180, 520, 20, 200));
+
+        //CENTER
+        //left long horizontal line below center
+        blocks.add(new Rectangle(410, 590, 200, 20));
+        //corner (vertical) at bottom leading into center area
+        blocks.add(new Rectangle(660, 520, 20, 140));
+        //line (horizontal) leading left from the corner
+        blocks.add(new Rectangle(460, 520, 290, 20));
+        //middle line poking up from ^
+        blocks.add(new Rectangle(600, 430, 20, 100));
+        //left line leading back to top from ^^
+        blocks.add(new Rectangle(460, 220, 20, 300));
+        //right line poking up from ^^^
+        blocks.add(new Rectangle(735, 500, 15, 40));
+        //line leading right from ^^
+        blocks.add(new Rectangle(460, 220, 360, 20));
+        //line leading right from middle poke
+        blocks.add(new Rectangle(670, 430, 80, 20));
+        //line leading down from ^
+        blocks.add(new Rectangle(670, 430, 15, 40));
+
+
+        //top part of inner center 
+        //(bottom) line leading down from ^^
+        blocks.add(new Rectangle(800, 290, 20, 320));
+        //line leading left from top part of (bottom)
+        blocks.add(new Rectangle(530, 290, 280, 20));
+        //line (with hole above it) leading down from ^
+        blocks.add(new Rectangle(530, 360, 20, 110));
+        //line leading right from ^
+        blocks.add(new Rectangle(530, 360, 220, 20));
+        //line leading left from bottom part of (bottom)
+        blocks.add(new Rectangle(730, 590, 90, 20));
+
+
+        //bottom part of inner center
+
+
+        //TOP AND MIDDLE LEFT
+        //(left) top left T horizontal
+        blocks.add(new Rectangle(70, 150, 110, 20));
+        //(right) top left T horizontal
+        blocks.add(new Rectangle(230, 150, 350, 20));
+        //(top) top left T vertical
+        blocks.add(new Rectangle(390, 160, 20, 290));
+        //(bottom) top left T vertical
+        blocks.add(new Rectangle(390, 500, 20, 110));
+
+        //TOP AND MIDDLE RIGHT
+        //top middle virtical line
+        blocks.add(new Rectangle(630, 80, 20, 90));
+        //top right C vertical
+        blocks.add(new Rectangle(870, 150, 20, 460));
+        //top right C top horizontal
+        blocks.add(new Rectangle(870, 150, 260, 20));
+        //top right C bottom horizontal
+        blocks.add(new Rectangle(870, 370, 260, 20));
+        //horizontal line intersecting left of top right C
+        blocks.add(new Rectangle(790, 150, 80, 20));
+        //horizontal line intersecting right of top middle line
+        blocks.add(new Rectangle(650, 150, 90, 20));
+
+
+        //BOTTOM LEFT
+        //horizontal line on bottom left T
+        blocks.add(new Rectangle(70, 380, 330, 20));
+        //(top) vertical line on bottom left T
+        blocks.add(new Rectangle(250, 400, 20, 50));
+        //(bottom) vertical line on bottom left T 
+        blocks.add(new Rectangle(250, 500, 20, 100));
+        //verticle line coming from main floor (left)
+        blocks.add(new Rectangle(320, 450, 20, 210));
+        //horizontal line going into bottom left indent
+        blocks.add(new Rectangle(70, 590, 200, 20));
+        //verticle line going down in bottom left indent
+        blocks.add(new Rectangle(70, 590, 20, 80));
+        //left verticle line going up from the main floor
+        blocks.add(new Rectangle(140, 660, 20, 60));
+        //right verticle line going up from the main floor
+        blocks.add(new Rectangle(1040, 660, 20, 60));
+        //long horizontal line above main floor
+        blocks.add(new Rectangle(140, 660, 920, 20));
+
+        //BOTTOM RIGHT
+        //line leading right from verticle line of top right C
+        blocks.add(new Rectangle(870, 590, 260, 20));
+        //line leading down from ^
+        blocks.add(new Rectangle(1110, 590, 20, 80));
+
+
+        //PELLETS
+        addPellets();
 
         // Used to keep track of time used to draw and update the game
         // This is used to limit the framerate later on
@@ -763,9 +779,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
                 //go through all blocks
                 for (Rectangle block : pellets) {
-                    //is the player hitting a block
+                    //is the player hitting a pellet
                     if (player.intersects(block)) {
                         pellets.remove(block);
+                        pelletcounter = pelletcounter - 1;
                         break;
                     }
                 }
@@ -858,10 +875,12 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
 
             }
-            
-            if(lives == 0){
-                done = true;
+
+            if (lives == 0) {
+                   done = true;
             }
+
+
 
 
 
