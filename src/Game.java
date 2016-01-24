@@ -39,17 +39,17 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
     boolean dead = false;
     int lives = 3;
     boolean start = false;
-    int pelletcounter = 10;
+    int pelletcounter = 240;
     // block
     ArrayList<Rectangle> blocks = new ArrayList<>();
     ArrayList<Rectangle> pellets = new ArrayList<>();
     //player
-    Rectangle player = new Rectangle(610, 610, 50, 50);
+    Rectangle player = new Rectangle(610, 610, 40, 40);
     //ghostie wosties
-    Rectangle blinky = new Rectangle(610, 170, 50, 50);
-    Rectangle pinky = new Rectangle(550, 170, 50, 50);
-    Rectangle inky = new Rectangle(670, 170, 50, 50);
-    Rectangle clinky = new Rectangle(730, 170, 50, 50);
+    Rectangle blinky = new Rectangle(20, 100, 50, 50);
+    Rectangle pinky = new Rectangle(20, 670, 50, 50);
+    Rectangle inky = new Rectangle(1130, 100, 50, 50);
+    Rectangle clinky = new Rectangle(1130, 670, 50, 50);
     int moveX = 0;
     int moveY = 0;
     int blinkyX = 0;
@@ -109,7 +109,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
         //player
         g.setColor(Color.YELLOW);
-        g.fillRect(player.x, player.y, 50, 50);
+        g.fillRect(player.x, player.y, 40, 40);
         //ghostie wosties
         g.setColor(Color.RED);
         g.fillRect(blinky.x, blinky.y, 50, 50);
@@ -117,7 +117,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         g.fillRect(pinky.x, pinky.y, 50, 50);
         g.setColor(Color.cyan);
         g.fillRect(inky.x, inky.y, 50, 50);
-        g.setColor(Color.ORANGE);
+        g.setColor(Color.GREEN);
         g.fillRect(clinky.x, clinky.y, 50, 50);
 
         //lives
@@ -153,7 +153,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
     public void addPellets() {
         pellets.clear();
-        //first top left horizontal line
+        //first top left horizontal line (15)
         pellets.add(new Rectangle(35, 115, 20, 20));
         pellets.add(new Rectangle(75, 115, 20, 20));
         pellets.add(new Rectangle(115, 115, 20, 20));
@@ -170,11 +170,11 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(555, 115, 20, 20));
         pellets.add(new Rectangle(595, 115, 20, 20));
 
-        //top left verticle line
+        //top left verticle line (2)
         pellets.add(new Rectangle(35, 150, 20, 20));
         pellets.add(new Rectangle(35, 185, 20, 20));
 
-        //second top left horizontal line
+        //second top left horizontal line (8)
         pellets.add(new Rectangle(75, 185, 20, 20));
         pellets.add(new Rectangle(115, 185, 20, 20));
         pellets.add(new Rectangle(155, 185, 20, 20));
@@ -184,13 +184,13 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(315, 185, 20, 20));
         pellets.add(new Rectangle(355, 185, 20, 20));
 
-        //second top left verticle line
+        //second top left verticle line (4)
         pellets.add(new Rectangle(355, 225, 20, 20));
         pellets.add(new Rectangle(355, 265, 20, 20));
         pellets.add(new Rectangle(355, 305, 20, 20));
         pellets.add(new Rectangle(355, 345, 20, 20));
 
-        //first middle left horizontal line
+        //first middle left horizontal line (8)
         pellets.add(new Rectangle(315, 345, 20, 20));
         pellets.add(new Rectangle(275, 345, 20, 20));
         pellets.add(new Rectangle(235, 345, 20, 20));
@@ -200,63 +200,63 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(75, 345, 20, 20));
         pellets.add(new Rectangle(35, 345, 20, 20));
 
-        //first middle vertical line
+        //first middle vertical line (2)
         pellets.add(new Rectangle(35, 380, 20, 20));
         pellets.add(new Rectangle(35, 415, 20, 20));
 
-        //second middle left horizontal line (left)
+        //second middle left horizontal line (left) (5)
         pellets.add(new Rectangle(70, 415, 20, 20));
         pellets.add(new Rectangle(105, 415, 20, 20));
         pellets.add(new Rectangle(140, 415, 20, 20));
         pellets.add(new Rectangle(175, 415, 20, 20));
         pellets.add(new Rectangle(210, 415, 20, 20));
 
-        //second left middle horizontal line(right)
+        //second left middle horizontal line(right) (2)
         pellets.add(new Rectangle(320, 420, 20, 20));
         pellets.add(new Rectangle(355, 420, 20, 20));
 
-        //second middle verticle line
+        //second middle verticle line (4)
         pellets.add(new Rectangle(215, 445, 20, 20));
         pellets.add(new Rectangle(215, 480, 20, 20));
         pellets.add(new Rectangle(215, 515, 20, 20));
         pellets.add(new Rectangle(215, 555, 20, 20));
 
-        //first bottom left horizontal
+        //first bottom left horizontal (5)
         pellets.add(new Rectangle(180, 555, 20, 20));
         pellets.add(new Rectangle(145, 555, 20, 20));
         pellets.add(new Rectangle(110, 555, 20, 20));
         pellets.add(new Rectangle(75, 555, 20, 20));
         pellets.add(new Rectangle(35, 555, 20, 20));
 
-        //first bottom left vertical
+        //first bottom left vertical (4)
         pellets.add(new Rectangle(35, 585, 20, 20));
         pellets.add(new Rectangle(35, 620, 20, 20));
         pellets.add(new Rectangle(35, 655, 20, 20));
         pellets.add(new Rectangle(35, 685, 20, 20));
 
-        //second bottom left horizontal
+        //second bottom left horizontal (2)
         pellets.add(new Rectangle(70, 685, 20, 20));
         pellets.add(new Rectangle(105, 685, 20, 20));
 
-        //second bottom left vertical
+        //second bottom left vertical (2)
         pellets.add(new Rectangle(105, 655, 20, 20));
         pellets.add(new Rectangle(105, 625, 20, 20));
 
-        //third bottom left horizontal
+        //third bottom left horizontal (5)
         pellets.add(new Rectangle(140, 625, 20, 20));
         pellets.add(new Rectangle(175, 625, 20, 20));
         pellets.add(new Rectangle(210, 625, 20, 20));
         pellets.add(new Rectangle(245, 625, 20, 20));
         pellets.add(new Rectangle(285, 625, 20, 20));
 
-        //third bottom left vertical
+        //third bottom left vertical (5)
         pellets.add(new Rectangle(285, 585, 20, 20));
         pellets.add(new Rectangle(285, 545, 20, 20));
         pellets.add(new Rectangle(285, 505, 20, 20));
         pellets.add(new Rectangle(285, 465, 20, 20));
         pellets.add(new Rectangle(285, 420, 20, 20));
 
-        //fourth bottom left verticle line
+        //fourth bottom left verticle line (6)
         pellets.add(new Rectangle(355, 455, 20, 20));
         pellets.add(new Rectangle(355, 490, 20, 20));
         pellets.add(new Rectangle(355, 525, 20, 20));
@@ -264,7 +264,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(355, 595, 20, 20));
         pellets.add(new Rectangle(355, 630, 20, 20));
 
-        //bottom (last) outer center horizontal line
+        //bottom (last) outer center horizontal line (8)
         pellets.add(new Rectangle(395, 630, 20, 20));
         pellets.add(new Rectangle(430, 630, 20, 20));
         pellets.add(new Rectangle(465, 630, 20, 20));
@@ -274,7 +274,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(595, 630, 20, 20));
         pellets.add(new Rectangle(630, 630, 20, 20));
 
-        //middle outer center horizontal line
+        //middle outer center horizontal line (7)
         pellets.add(new Rectangle(625, 555, 20, 20));
         pellets.add(new Rectangle(590, 555, 20, 20));
         pellets.add(new Rectangle(555, 555, 20, 20));
@@ -283,7 +283,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(455, 555, 20, 20));
         pellets.add(new Rectangle(425, 555, 20, 20));
 
-        //left-most outer center vertical line
+        //left-most outer center vertical line (9)
         pellets.add(new Rectangle(425, 515, 20, 20));
         pellets.add(new Rectangle(425, 475, 20, 20));
         pellets.add(new Rectangle(425, 435, 20, 20));
@@ -294,7 +294,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(425, 230, 20, 20));
         pellets.add(new Rectangle(425, 185, 20, 20));
 
-        //top outer center horizontal line
+        //top outer center horizontal line (10)
         pellets.add(new Rectangle(465, 185, 20, 20));
         pellets.add(new Rectangle(505, 185, 20, 20));
         pellets.add(new Rectangle(545, 185, 20, 20));
@@ -306,7 +306,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(790, 185, 20, 20));
         pellets.add(new Rectangle(835, 185, 20, 20));
 
-        //right-most outer center vertical line
+        //right-most outer center vertical line (11)
         pellets.add(new Rectangle(835, 225, 20, 20));
         pellets.add(new Rectangle(835, 260, 20, 20));
         pellets.add(new Rectangle(835, 305, 20, 20));
@@ -319,21 +319,29 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(835, 590, 20, 20));
         pellets.add(new Rectangle(835, 625, 20, 20));
 
-        //bottom inner center horizontal line
+        //bottom inner center horizontal line (leading into/from lower right) (11)
+        pellets.add(new Rectangle(1045, 625, 20, 20));
+        pellets.add(new Rectangle(1010, 625, 20, 20));
+        pellets.add(new Rectangle(975, 625, 20, 20));
+        pellets.add(new Rectangle(940, 625, 20, 20));
+        pellets.add(new Rectangle(905, 625, 20, 20));
+        pellets.add(new Rectangle(870, 625, 20, 20));
+        pellets.add(new Rectangle(835, 625, 20, 20));
         pellets.add(new Rectangle(800, 625, 20, 20));
         pellets.add(new Rectangle(765, 625, 20, 20));
         pellets.add(new Rectangle(730, 625, 20, 20));
         pellets.add(new Rectangle(695, 625, 20, 20));
+        
 
-        //bottom inner center vertical line
+        //bottom inner center vertical line (2)
         pellets.add(new Rectangle(695, 590, 20, 20));
         pellets.add(new Rectangle(695, 555, 20, 20));
 
-        //second bottom (second last) inner center horizontal line
+        //second bottom (second last) inner center horizontal line (2)
         pellets.add(new Rectangle(730, 555, 20, 20));
         pellets.add(new Rectangle(765, 555, 20, 20));
 
-        //right-most inner center vertical line
+        //right-most inner center vertical line (7)
         pellets.add(new Rectangle(765, 530, 20, 20));
         pellets.add(new Rectangle(765, 500, 20, 20));
         pellets.add(new Rectangle(765, 465, 20, 20));
@@ -342,32 +350,32 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(765, 360, 20, 20));
         pellets.add(new Rectangle(765, 325, 20, 20));
 
-        //middle inner center horizontal line
+        //middle inner center horizontal line (5)
         pellets.add(new Rectangle(725, 395, 20, 20));
         pellets.add(new Rectangle(685, 395, 20, 20));
         pellets.add(new Rectangle(640, 395, 20, 20));
         pellets.add(new Rectangle(600, 395, 20, 20));
         pellets.add(new Rectangle(565, 395, 20, 20));
 
-        //right core vertical
+        //right core vertical (3)
         pellets.add(new Rectangle(640, 425, 20, 20));
         pellets.add(new Rectangle(640, 455, 20, 20));
         pellets.add(new Rectangle(640, 490, 20, 20));
 
-        //right core lower section
+        //right core lower section (4)
         pellets.add(new Rectangle(670, 490, 20, 20));
         pellets.add(new Rectangle(700, 490, 20, 20));
         pellets.add(new Rectangle(700, 460, 20, 20));
         pellets.add(new Rectangle(730, 460, 20, 20));
 
-        //left core lower section
+        //left core lower section (5)
         pellets.add(new Rectangle(565, 425, 20, 20));
         pellets.add(new Rectangle(565, 455, 20, 20));
         pellets.add(new Rectangle(565, 485, 20, 20));
         pellets.add(new Rectangle(530, 485, 20, 20));
         pellets.add(new Rectangle(495, 485, 20, 20));
 
-        //left-most inner center vertical line
+        //left-most inner center vertical line (6)
         pellets.add(new Rectangle(495, 445, 20, 20));
         pellets.add(new Rectangle(495, 405, 20, 20));
         pellets.add(new Rectangle(495, 365, 20, 20));
@@ -375,7 +383,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(495, 290, 20, 20));
         pellets.add(new Rectangle(495, 255, 20, 20));
 
-        //top inner center horizontal line
+        //top inner center horizontal line (9)
         pellets.add(new Rectangle(535, 255, 20, 20));
         pellets.add(new Rectangle(575, 255, 20, 20));
         pellets.add(new Rectangle(615, 255, 20, 20));
@@ -386,13 +394,98 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         pellets.add(new Rectangle(805, 255, 20, 20));
         pellets.add(new Rectangle(495, 255, 20, 20));
 
-        //second inner center horizontal line
+        //second inner center horizontal line (6)
         pellets.add(new Rectangle(725, 325, 20, 20));
         pellets.add(new Rectangle(685, 325, 20, 20));
         pellets.add(new Rectangle(645, 325, 20, 20));
         pellets.add(new Rectangle(605, 325, 20, 20));
         pellets.add(new Rectangle(565, 325, 20, 20));
         pellets.add(new Rectangle(530, 325, 20, 20));
+        
+        //first right horizontal line (13)
+        pellets.add(new Rectangle(665, 115, 20, 20));
+        pellets.add(new Rectangle(705, 115, 20, 20));
+        pellets.add(new Rectangle(745, 115, 20, 20));
+        pellets.add(new Rectangle(785, 115, 20, 20));
+        pellets.add(new Rectangle(825, 115, 20, 20));
+        pellets.add(new Rectangle(865, 115, 20, 20));
+        pellets.add(new Rectangle(905, 115, 20, 20));
+        pellets.add(new Rectangle(945, 115, 20, 20));
+        pellets.add(new Rectangle(985, 115, 20, 20));
+        pellets.add(new Rectangle(1025, 115, 20, 20));
+        pellets.add(new Rectangle(1065, 115, 20, 20));
+        pellets.add(new Rectangle(1105, 115, 20, 20));
+        pellets.add(new Rectangle(1145, 115, 20, 20));
+        
+        //first right verticle line (2)
+        pellets.add(new Rectangle(1145, 150, 20, 20));
+        pellets.add(new Rectangle(1145, 185, 20, 20));
+        
+        //second right horizontal line (6)
+        pellets.add(new Rectangle(1105, 185, 20, 20));
+        pellets.add(new Rectangle(1065, 185, 20, 20));
+        pellets.add(new Rectangle(1025, 185, 20, 20));
+        pellets.add(new Rectangle(985, 185, 20, 20));
+        pellets.add(new Rectangle(945, 185, 20, 20));
+        pellets.add(new Rectangle(905, 185, 20, 20));
+        
+        //second right vertical line (4)
+        pellets.add(new Rectangle(905, 225, 20, 20));
+        pellets.add(new Rectangle(905, 265, 20, 20));
+        pellets.add(new Rectangle(905, 300, 20, 20));
+        pellets.add(new Rectangle(905, 335, 20, 20));
+        
+        //third right horizontal line (6)
+        pellets.add(new Rectangle(945, 335, 20, 20));
+        pellets.add(new Rectangle(985, 335, 20, 20));
+        pellets.add(new Rectangle(1025, 335, 20, 20));
+        pellets.add(new Rectangle(1065, 335, 20, 20));
+        pellets.add(new Rectangle(1105, 335, 20, 20));
+        pellets.add(new Rectangle(1145, 335, 20, 20));
+        
+        //third right vertical line (2)
+        pellets.add(new Rectangle(1145, 370, 20, 20));
+        pellets.add(new Rectangle(1145, 405, 20, 20));
+        
+        //fourth right horizontal line (6)
+        pellets.add(new Rectangle(1105, 405, 20, 20));
+        pellets.add(new Rectangle(1065, 405, 20, 20));
+        pellets.add(new Rectangle(1025, 405, 20, 20));
+        pellets.add(new Rectangle(985, 405, 20, 20));
+        pellets.add(new Rectangle(945, 405, 20, 20));
+        pellets.add(new Rectangle(905, 405, 20, 20));
+        
+        //fourth right vertical line (4)
+        pellets.add(new Rectangle(905, 445, 20, 20));
+        pellets.add(new Rectangle(905, 480, 20, 20));
+        pellets.add(new Rectangle(905, 515, 20, 20));
+        pellets.add(new Rectangle(905, 555, 20, 20));
+        
+        //fifth right horizontal line (6)
+        pellets.add(new Rectangle(945, 555, 20, 20));
+        pellets.add(new Rectangle(985, 555, 20, 20));
+        pellets.add(new Rectangle(1025, 555, 20, 20));
+        pellets.add(new Rectangle(1065, 555, 20, 20));
+        pellets.add(new Rectangle(1105, 555, 20, 20));
+        pellets.add(new Rectangle(1145, 555, 20, 20));
+        
+        //fifth right vertical line (3)
+        pellets.add(new Rectangle(1145, 600, 20, 20));
+        pellets.add(new Rectangle(1145, 640, 20, 20));
+        pellets.add(new Rectangle(1145, 685, 20, 20));
+        
+        //sixth right horizontal line (2)
+        pellets.add(new Rectangle(1110, 685, 20, 20));
+        pellets.add(new Rectangle(1075, 685, 20, 20));
+        
+        //sixth right vertical line (2)
+        pellets.add(new Rectangle(1075, 655, 20, 20));
+        pellets.add(new Rectangle(1075, 625, 20, 20));
+        
+        
+        
+        
+        
     }
 
     // The main game loop
@@ -454,8 +547,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(460, 520, 290, 20));
         //middle line poking up from ^
         blocks.add(new Rectangle(600, 430, 20, 100));
-        //left line leading back to top from ^^
-        blocks.add(new Rectangle(460, 220, 20, 300));
+        //(top) left line leading back to top from ^^
+        blocks.add(new Rectangle(460, 220, 20, 150));
+        //(bottom) left line leading back to top from ^^
+        blocks.add(new Rectangle(460, 420, 20, 100));
         //right line poking up from ^^^
         blocks.add(new Rectangle(735, 500, 15, 40));
         //line leading right from ^^
@@ -488,23 +583,31 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //(right) top left T horizontal
         blocks.add(new Rectangle(230, 150, 350, 20));
         //(top) top left T vertical
-        blocks.add(new Rectangle(390, 160, 20, 290));
+        blocks.add(new Rectangle(390, 160, 20, 100));
+        //(middle) top T vertical
+        blocks.add(new Rectangle(390, 310, 20, 140));
         //(bottom) top left T vertical
         blocks.add(new Rectangle(390, 500, 20, 110));
 
         //TOP AND MIDDLE RIGHT
         //top middle virtical line
         blocks.add(new Rectangle(630, 80, 20, 90));
-        //top right C vertical
-        blocks.add(new Rectangle(870, 150, 20, 460));
+        //(top) top right C vertical
+        blocks.add(new Rectangle(870, 150, 20, 100));
+        //(middle) top right C vertical
+        blocks.add(new Rectangle(870, 300, 20, 180));
+        //(bottom) top right C vertical
+        blocks.add(new Rectangle(870, 530, 20, 80));
         //top right C top horizontal
         blocks.add(new Rectangle(870, 150, 260, 20));
-        //top right C bottom horizontal
-        blocks.add(new Rectangle(870, 370, 260, 20));
+        //(left) top right C bottom horizontal
+        blocks.add(new Rectangle(870, 370, 140, 20));
+        //(right) top right C bottom horizontal
+        blocks.add(new Rectangle(1060, 370, 70, 20));
         //horizontal line intersecting left of top right C
-        blocks.add(new Rectangle(790, 150, 80, 20));
+        blocks.add(new Rectangle(780, 150, 90, 20));
         //horizontal line intersecting right of top middle line
-        blocks.add(new Rectangle(650, 150, 90, 20));
+        blocks.add(new Rectangle(650, 150, 80, 20));
 
 
         //BOTTOM LEFT
@@ -516,8 +619,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(250, 500, 20, 100));
         //verticle line coming from main floor (left)
         blocks.add(new Rectangle(320, 450, 20, 210));
-        //horizontal line going into bottom left indent
-        blocks.add(new Rectangle(70, 590, 200, 20));
+        //(left) horizontal line going into bottom left indent
+        blocks.add(new Rectangle(70, 590, 60, 20));
+        //(right) horizontal line going into bottom left indent
+        blocks.add(new Rectangle(180, 590, 90, 20));
         //verticle line going down in bottom left indent
         blocks.add(new Rectangle(70, 590, 20, 80));
         //left verticle line going up from the main floor
@@ -528,8 +633,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         blocks.add(new Rectangle(140, 660, 920, 20));
 
         //BOTTOM RIGHT
-        //line leading right from verticle line of top right C
-        blocks.add(new Rectangle(870, 590, 260, 20));
+        //(left) line leading right from verticle line of top right C
+        blocks.add(new Rectangle(870, 590, 140, 20));
+        //(right) line leading right from verticle line of top right C
+        blocks.add(new Rectangle(1060, 590, 70, 20));
         //line leading down from ^
         blocks.add(new Rectangle(1110, 590, 20, 80));
 
@@ -547,7 +654,11 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         boolean done = false;
         while (!done) {
 
-            int rand = (int) (Math.random() * 4);
+            int randblinky = (int) (Math.random() * 4);
+            int randpinky = (int) (Math.random() * 4);
+            int randinky = (int) (Math.random() * 4);
+            int randclinky = (int) (Math.random() * 4);
+            
 
             // determines when we started so we can keep a framerate
             startTime = System.currentTimeMillis();
@@ -591,10 +702,6 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                 }
 
 
-                if (blinkyX == 0 && blinkyY == 0) {
-                    blinkyX = 0;
-                    blinkyY = 0;
-                }
 
 
                 if (System.currentTimeMillis() > deadtimer) {
@@ -613,20 +720,20 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                         player.y = 610;
                         moveX = 0;
                         moveY = 0;
-                        blinky.x = 610;
-                        blinky.y = 170;
+                        blinky.x = 20;
+                        blinky.y = 100;
                         blinkyX = 0;
                         blinkyY = 0;
-                        pinky.x = 550;
-                        pinky.y = 170;
+                        pinky.x = 20;
+                        pinky.y = 670;
                         pinkyX = 0;
                         pinkyY = 0;
-                        inky.x = 670;
-                        inky.y = 170;
+                        inky.x = 1130;
+                        inky.y = 100;
                         inkyX = 0;
                         inkyY = 0;
-                        clinky.x = 730;
-                        clinky.y = 170;
+                        clinky.x = 1130;
+                        clinky.y = 670;
                         clinkyX = 0;
                         clinkyY = 0;
                         dead = false;
@@ -777,7 +884,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                     }
                 }
 
-                //go through all blocks
+                //making pellets dissappear
                 for (Rectangle block : pellets) {
                     //is the player hitting a pellet
                     if (player.intersects(block)) {
@@ -789,64 +896,64 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
                 //moving the ghostie wosties
                 if (blinkyX == 0 && blinkyY == 0) {
-                    if (rand == 0) {
+                    if (randblinky == 0) {
                         blinkyX = -3;
                         blinkyY = 0;
-                    } else if (rand == 1) {
+                    } else if (randblinky == 1) {
                         blinkyX = 3;
                         blinkyY = 0;
-                    } else if (rand == 2) {
+                    } else if (randblinky == 2) {
                         blinkyX = 0;
                         blinkyY = -3;
-                    } else if (rand == 3) {
+                    } else if (randblinky == 3) {
                         blinkyX = 0;
                         blinkyY = 3;
                     }
                 }
 
                 if (pinkyX == 0 && pinkyY == 0) {
-                    if (rand == 0) {
+                    if (randpinky == 0) {
                         pinkyX = -3;
                         pinkyY = 0;
-                    } else if (rand == 1) {
+                    } else if (randpinky == 1) {
                         pinkyX = 3;
                         pinkyY = 0;
-                    } else if (rand == 2) {
+                    } else if (randpinky == 2) {
                         pinkyX = 0;
                         pinkyY = -3;
-                    } else if (rand == 3) {
+                    } else if (randpinky == 3) {
                         pinkyX = 0;
                         pinkyY = 3;
                     }
                 }
 
                 if (inkyX == 0 && inkyY == 0) {
-                    if (rand == 0) {
+                    if (randinky == 0) {
                         inkyX = -3;
                         inkyY = 0;
-                    } else if (rand == 1) {
+                    } else if (randinky == 1) {
                         inkyX = 3;
                         inkyY = 0;
-                    } else if (rand == 2) {
+                    } else if (randinky == 2) {
                         inkyX = 0;
                         inkyY = -3;
-                    } else if (rand == 3) {
+                    } else if (randinky == 3) {
                         inkyX = 0;
                         inkyY = 3;
                     }
                 }
 
                 if (clinkyX == 0 && clinkyY == 0) {
-                    if (rand == 0) {
+                    if (randclinky == 0) {
                         clinkyX = -3;
                         clinkyY = 0;
-                    } else if (rand == 1) {
+                    } else if (randclinky == 1) {
                         clinkyX = 3;
                         clinkyY = 0;
-                    } else if (rand == 2) {
+                    } else if (randclinky == 2) {
                         clinkyX = 0;
                         clinkyY = -3;
-                    } else if (rand == 3) {
+                    } else if (randclinky == 3) {
                         clinkyX = 0;
                         clinkyY = 3;
                     }
@@ -871,6 +978,10 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
                         dead = true;
                         lives = lives - 1;
                     }
+                }
+                
+                if(pelletcounter == 0){
+                    done = true;
                 }
 
 
