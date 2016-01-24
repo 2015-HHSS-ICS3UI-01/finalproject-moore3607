@@ -581,7 +581,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //(left) top left T horizontal
         blocks.add(new Rectangle(70, 150, 100, 20));
         //(right) top left T horizontal
-        blocks.add(new Rectangle(230, 150, 350, 20));
+        blocks.add(new Rectangle(230, 150, 340, 20));
         //(top) top left T vertical
         blocks.add(new Rectangle(390, 160, 20, 90));
         //(middle) top T vertical
@@ -605,7 +605,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //(right) top right C bottom horizontal
         blocks.add(new Rectangle(1060, 370, 70, 20));
         //horizontal line intersecting left of top right C
-        blocks.add(new Rectangle(700, 150, 190, 20));
+        blocks.add(new Rectangle(710, 150, 180, 20));
 
 
         //BOTTOM LEFT
