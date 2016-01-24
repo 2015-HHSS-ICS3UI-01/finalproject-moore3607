@@ -548,11 +548,11 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //middle line poking up from ^
         blocks.add(new Rectangle(600, 430, 20, 100));
         //(top) left line leading back to top from ^^
-        blocks.add(new Rectangle(460, 220, 20, 150));
+        blocks.add(new Rectangle(460, 220, 20, 140));
         //(bottom) left line leading back to top from ^^
         blocks.add(new Rectangle(460, 420, 20, 100));
         //right line poking up from ^^^
-        blocks.add(new Rectangle(735, 500, 15, 40));
+        blocks.add(new Rectangle(735, 510, 15, 30));
         //line leading right from ^^
         blocks.add(new Rectangle(460, 220, 360, 20));
         //line leading right from middle poke
@@ -579,13 +579,13 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
         //TOP AND MIDDLE LEFT
         //(left) top left T horizontal
-        blocks.add(new Rectangle(70, 150, 110, 20));
+        blocks.add(new Rectangle(70, 150, 100, 20));
         //(right) top left T horizontal
         blocks.add(new Rectangle(230, 150, 350, 20));
         //(top) top left T vertical
-        blocks.add(new Rectangle(390, 160, 20, 100));
+        blocks.add(new Rectangle(390, 160, 20, 90));
         //(middle) top T vertical
-        blocks.add(new Rectangle(390, 310, 20, 140));
+        blocks.add(new Rectangle(390, 310, 20, 130));
         //(bottom) top left T vertical
         blocks.add(new Rectangle(390, 500, 20, 110));
 
@@ -593,15 +593,15 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //top middle virtical line
         blocks.add(new Rectangle(630, 80, 20, 90));
         //(top) top right C vertical
-        blocks.add(new Rectangle(870, 150, 20, 100));
+        blocks.add(new Rectangle(870, 150, 20, 90));
         //(middle) top right C vertical
-        blocks.add(new Rectangle(870, 300, 20, 180));
+        blocks.add(new Rectangle(870, 300, 20, 170));
         //(bottom) top right C vertical
         blocks.add(new Rectangle(870, 530, 20, 80));
         //top right C top horizontal
         blocks.add(new Rectangle(870, 150, 260, 20));
         //(left) top right C bottom horizontal
-        blocks.add(new Rectangle(870, 370, 140, 20));
+        blocks.add(new Rectangle(870, 370, 130, 20));
         //(right) top right C bottom horizontal
         blocks.add(new Rectangle(1060, 370, 70, 20));
         //horizontal line intersecting left of top right C
@@ -612,13 +612,13 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
         //horizontal line on bottom left T
         blocks.add(new Rectangle(70, 380, 330, 20));
         //(top) vertical line on bottom left T
-        blocks.add(new Rectangle(250, 400, 20, 50));
+        blocks.add(new Rectangle(250, 400, 20, 40));
         //(bottom) vertical line on bottom left T 
         blocks.add(new Rectangle(250, 500, 20, 100));
         //verticle line coming from main floor (left)
         blocks.add(new Rectangle(320, 450, 20, 210));
         //(left) horizontal line going into bottom left indent
-        blocks.add(new Rectangle(70, 590, 60, 20));
+        blocks.add(new Rectangle(70, 590, 50, 20));
         //(right) horizontal line going into bottom left indent
         blocks.add(new Rectangle(180, 590, 90, 20));
         //verticle line going down in bottom left indent
@@ -632,7 +632,7 @@ public class Game extends JComponent implements KeyListener, MouseMotionListener
 
         //BOTTOM RIGHT
         //(left) line leading right from verticle line of top right C
-        blocks.add(new Rectangle(870, 590, 140, 20));
+        blocks.add(new Rectangle(870, 590, 130, 20));
         //(right) line leading right from verticle line of top right C
         blocks.add(new Rectangle(1060, 590, 70, 20));
         //line leading down from ^
